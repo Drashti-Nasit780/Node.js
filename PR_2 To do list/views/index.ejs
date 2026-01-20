@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Todo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial
+        }
+
+        body {
+            background: #eaf2ff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center
+        }
+
+        .todo-app {
+            background: #fff;
+            width: 430px;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, .15)
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 15px
+        }
+
+        .add-task {
+            display: grid;
+            grid-template-columns: 60px 1fr 100px 70px;
+            gap: 8px;
+            margin-bottom: 20px
+        }
+
+        .add-task input,
+        .add-task select {
+            padding: 8px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            width: 100%
+        }
+
+        .add-task button {
+            background: #3b82f6;
+            color: #fff;
+            border: none;
+            border-radius: 6px
+        }
+
+        .task {
+            background: #f6f8ff;
+            padding: 10px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px
+        }
+
+        .task-left {
+            display: flex;
+            gap: 10px;
+            align-items: center
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%
+        }
+
+        .high {
+            background: #ef4444
+        }
+
+        .medium {
+            background: #facc15
+        }
+
+        .low {
+            background: #22c55e
+        }
+
+        .actions a {
+            text-decoration: none;
+            margin-left: 8px;
+            font-size: 13px
+        }
+
+        .delete {
+            color: #ef4444
+        }
+    </style>
+</head>
+
+<body>
+    <div class="todo-app">
+        <h2>📝 To-Do List</h2>
+
+        <form class="add-task" action="/add-task" method="post">
+            <input type="number" name="no" placeholder="No" required>
+            <input type="text" name="tname" placeholder="Task name" required>
+            <select name="tprio" required>
+                <option value="">Priority</option>
+                <option value="high">High</option>
+                <option value="medium">Medium</option>
+                <option value="low">Low</option>
+            </select>
+            <button>Add</button>
+        </form>
+
+        <% tasks.forEach(t=>{ %>
+            <div class="task">
+                <div class="task-left">
+                    <span class="dot <%= t.tprio %>"></span>
+                    <span>
+                        <%= t.tname %>
+                    </span>
+                </div>
+                <div class="actions">
+                    <a href="/edit-task/<%= t.no %>">Edit</a>
+                    <a href="/delete-task/<%= t.no %>" class="delete">Delete</a>
+                </div>
+            </div>
+            <% }) %>
+
+    </div>
+</body>
+
+</html>
