@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Update Book</title>
+
+<style>
+body{
+    background:linear-gradient(135deg,#f5efe6,#faf7f2);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif
+}
+
+.edit-container{
+    max-width:500px;
+    margin:80px auto;
+    background:rgba(255,255,255,.95);
+    padding:35px;
+    border-radius:22px;
+    box-shadow:0 18px 45px rgba(120,94,70,.18)
+}
+
+.edit-container h2{
+    text-align:center;
+    margin-bottom:30px;
+    color:#4b2e19;
+    letter-spacing:.6px
+}
+
+.edit-container table{
+    width:100%
+}
+
+.edit-container td{
+    padding:10px 5px;
+    color:#5c4033;
+    font-size:14px
+}
+
+.edit-container input[type="text"],
+.edit-container input[type="number"],
+.edit-container input[type="file"]{
+    width:100%;
+    padding:10px 12px;
+    border-radius:12px;
+    border:1px solid #d6c6b8
+}
+
+.edit-container input:focus{
+    outline:none;
+    border-color:#b08968;
+    box-shadow:0 0 0 4px rgba(176,137,104,.25)
+}
+
+.btn-update{
+    background:linear-gradient(135deg,#8b5e3c,#6f4518);
+    color:#fff;
+    border:none;
+    padding:10px 18px;
+    border-radius:14px;
+    font-weight:600;
+    cursor:pointer
+}
+
+.btn-update:hover{
+    opacity:.9
+}
+
+.btn-back{
+    text-decoration:none;
+    color:#6f4518;
+    font-weight:500
+}
+
+.btn-back:hover{
+    text-decoration:underline
+}
+</style>
+</head>
+
+<body>
+
+<div class="edit-container">
+    <h2>📘 Update Book</h2>
+
+    <form action="/update-book/<%= book._id %>" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="id" value="<%= book._id %>">
+
+        <table>
+            <tr>
+                <td>Title</td>
+                <td><input type="text" name="title" value="<%= book.title %>"></td>
+            </tr>
+
+            <tr>
+                <td>Category</td>
+                <td><input type="text" name="category" value="<%= book.category %>"></td>
+            </tr>
+
+            <tr>
+                <td>Pages</td>
+                <td><input type="number" name="pages" value="<%= book.pages %>"></td>
+            </tr>
+
+            <tr>
+                <td>Price</td>
+                <td><input type="number" name="price" value="<%= book.price %>"></td>
+            </tr>
+
+            <tr>
+                <td>Book Image</td>
+                <td><input type="file" name="bookImg"></td>
+            </tr>
+
+            <tr>
+                <td><a href="/" class="btn-back">← Back</a></td>
+                <td style="text-align:right">
+                    <input type="submit" value="Update Book" class="btn-update">
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+</body>
+</html>
