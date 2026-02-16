@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/style.css">
+
+</head>
+
+<body>
+    <!-- Movie List -->
+    <div class="glass-card">
+        <header>
+            <a href="/">Add movie</a>
+            <a href="/add">View movie</a>
+        </header>
+
+        <h3>All Movies</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Movie</th>
+                    <th>Genre</th>
+                    <th>Duration</th>
+                    <th>Poster</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <% movies.forEach((movie,i)=>{ %>
+                    <tr>
+                        <td>
+                            <%= i+1 %>
+                        </td>
+                        <td>
+                            <%= movie.title %>
+                        </td>
+                        <td>
+                            <%= movie.genre %>
+                        </td>
+                        <td>
+                            <%= movie.duration %> min
+                        </td>
+                        <td><img src="<%= movie.movieImg %>"></td>
+
+                        <td>
+                            <a href="/edit-movie/<%= movie._id%>" class="edit">Edit</a>
+                            <a href="/delete-movie/<%= movie._id%>" class="delete">Delete</a>
+                        </td>
+                    </tr>
+                    <% }) %>
+            </tbody>
+        </table>
+
+    </div>
+</body>
+
+</html>
