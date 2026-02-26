@@ -1,0 +1,94 @@
+<%- include('../header') %>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-body p-4">
+
+                    <h2 class="text-center mb-4 fw-bold">Edit Blog</h2>
+
+                    <form action="/blog/update/<%= blog._id %>" 
+                          method="POST" 
+                          enctype="multipart/form-data">
+
+                        <div class="mb-3">
+                            <label class="form-label">Title</label>
+                            <input type="text" 
+                                   name="title" 
+                                   value="<%= blog.title %>" 
+                                   class="form-control rounded-3" 
+                                   required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Current Image</label><br>
+                            <img src="/uploads/<%= blog.image %>" 
+                                 class="img-fluid rounded-3 mb-3"
+                                 style="max-height:200px;">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Change Image</label>
+                            <input type="file" 
+                                   name="profileImage" 
+                                   class="form-control rounded-3">
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Author</label>
+                                <input type="text" 
+                                       name="author" 
+                                       value="<%= blog.author %>" 
+                                       class="form-control rounded-3" 
+                                       required>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Category</label>
+                                <input type="text" 
+                                       name="category" 
+                                       value="<%= blog.category %>" 
+                                       class="form-control rounded-3" 
+                                       required>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Short Description</label>
+                            <input type="text" 
+                                   name="shortDesc" 
+                                   value="<%= blog.shortDesc %>" 
+                                   class="form-control rounded-3" 
+                                   required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Full Description</label>
+                            <textarea name="fullDesc" 
+                                      rows="5" 
+                                      class="form-control rounded-3" 
+                                      required><%= blog.fullDesc %></textarea>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-success btn-lg rounded-3 fw-bold">
+                                Update Blog
+                            </button>
+
+                            <a href="/blog/view-blog" 
+                               class="btn btn-secondary rounded-3">
+                                Cancel
+                            </a>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('../footer') %>
