@@ -1,0 +1,113 @@
+<%- include('../header') %>
+
+<style>
+    body {
+        background-color: #f1f3f9;
+        font-family: Arial, sans-serif;
+    }
+
+    .blog-container {
+        max-width: 750px;
+        margin: 60px auto;
+        background: #ffffff;
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 6px 20px rgba(88, 102, 255, 0.08);
+    }
+
+    .blog-container h2 {
+        margin-bottom: 30px;
+        font-weight: 600;
+        text-align: center;
+        color: #f3f3f3;
+    }
+
+    label {
+        font-weight: 500;
+        margin-bottom: 6px;
+        color: #444;
+    }
+
+    .form-control {
+        border-radius: 8px;
+        height: 45px;
+        border: 1px solid #dcdffc;
+    }
+
+    textarea.form-control {
+        height: auto;
+    }
+
+    .form-control:focus {
+        border-color: #5866ff;
+        box-shadow: 0 0 0 2px rgba(88, 102, 255, 0.15);
+    }
+
+    .btn-publish {
+        background-color: #5866ff;
+        color: white;
+        border-radius: 8px;
+        padding: 8px 25px;
+        font-weight: 500;
+        border: none;
+    }
+
+    .btn-publish:hover {
+        background-color: #3f4ce0;
+    }
+
+    .btn-wrapper {
+        text-align: right;
+        margin-top: 15px;
+    }
+</style>
+
+<div class="blog-container">
+
+    <h2 class="bg-danger">Add New Blog</h2>
+
+    <form action="/blog/insert-blog" method="POST" enctype="multipart/form-data">
+
+        <div class="mb-4">
+            <label>Title</label>
+            <input type="text" name="title" class="form-control" placeholder="Enter blog title" required>
+        </div>
+
+        <div class="mb-4">
+            <label>Upload Image</label>
+            <input type="file" name="profileImage" class="form-control">
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <label>Author</label>
+                <input type="text" name="author" class="form-control" placeholder="Enter author name" required>
+            </div>
+
+            <div class="col-md-6">
+                <label>Category</label>
+                <input type="text" name="category" class="form-control" placeholder="Enter category" required>
+            </div>
+        </div>
+
+        <div class="mb-4">
+            <label>Short Description</label>
+            <input type="text" name="shortDesc" class="form-control" placeholder="Short description" required>
+        </div>
+
+        <div class="mb-4">
+            <label>Full Description</label>
+            <textarea name="fullDesc" rows="6" class="form-control" placeholder="Write full blog content..." required></textarea>
+        </div>
+
+        <div class="btn-wrapper">
+            <button type="submit" class="btn btn-publish">
+                Publish Blog
+            </button>
+        </div>
+
+    </form>
+
+</div>
+
+<%- include('../footer') %>
