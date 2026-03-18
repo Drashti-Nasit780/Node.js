@@ -1,0 +1,62 @@
+<%- include('../header') %>
+
+<div class="page-wrapper">
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+                <h4 class="page-title">Product List</h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+
+            <% products.forEach((prod)=> { %>
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow">
+                        
+                        <% if(prod.prodImg){ %>
+                            <img src="<%= prod.prodImg %>" class="card-img-top" height="250" style="object-fit:cover;">
+                        <% } else { %>
+                            <img src="https://via.placeholder.com/300x250" class="card-img-top">
+                        <% } %>
+
+                        <div class="card-body">
+                            <h5 class="card-title"><%= prod.prodName %></h5>
+                            
+                            <p class="card-text">
+                                <strong>Description:</strong> <%= prod.prodDes %>
+                            </p>
+
+                            <p class="card-text">
+                                <strong>Price:</strong> ₹ <%= prod.prodPrice %>
+                            </p>
+
+                            <p class="card-text">
+                                <strong>Category:</strong> 
+                                <%= prod.categoryId ? prod.categoryId.categoryName : "-" %>
+                            </p>
+
+                            <p class="card-text">
+                                <strong>SubCategory:</strong> 
+                                <%= prod.subCategoryId ? prod.subCategoryId.subCategoryName : "-" %>
+                            </p>
+
+                            <p class="card-text">
+                                <strong>ExtraCategory:</strong> 
+                                <%= prod.extracategoryId ? prod.extracategoryId.extraCategoryName : "-" %>
+                            </p>
+
+                            <a href="/products/edit-product/<%= prod._id %>" class="btn btn-warning btn-sm">Edit</a>
+                            <a href="/products/delete-product/<%= prod._id %>" class="btn btn-danger btn-sm">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+
+        </div>
+    </div>
+</div>
+
+<%- include('../footer') %>

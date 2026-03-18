@@ -1,0 +1,143 @@
+<%- include('../header') %>
+
+    <div class="page-wrapper">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+
+                        <form class="form-horizontal" action="/products/update-product/<%= product._id %>" method="post"
+                            enctype="multipart/form-data">
+
+                            <div class="card-body">
+                                <h4 class="card-title">Edit Product</h4>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-3 text-right control-label col-form-label">
+                                        Product Name
+                                    </label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="prodName"
+                                            value="<%= product.prodName %>">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-3 text-right control-label col-form-label">
+                                        Description
+                                    </label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="prodDes"
+                                            value="<%= product.prodDes %>">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-3 text-right control-label col-form-label">
+                                        Price
+                                    </label>
+                                    <div class="col-sm-9">
+                                        <input type="number" class="form-control" name="prodPrice"
+                                            value="<%= product.prodPrice %>">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-3 text-right control-label col-form-label">
+                                        Category
+                                    </label>
+
+                                    <div class="col-sm-9">
+                                        <select class="form-control" name="categoryId" id="categoryId">
+
+                                            <option value="">---select category---</option>
+
+                                            <% categories.forEach(cat=> { %>
+                                                <option value="<%= cat._id %>" <%=product.categoryId==cat._id
+                                                    ? "selected" : "" %>>
+                                                    <%= cat.categoryName %>
+                                                </option>
+                                                <% }) %>
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 text-right control-label col-form-label">
+                                        Subcategory
+                                    </label>
+
+                                    <div class="col-sm-9">
+                                        <select class="form-control" name="subCategoryId" id="subCategoryId">
+
+                                            <option value="">---select subcategory---</option>
+
+                                            <% subcategories.forEach(sub=> { %>
+                                                <option value="<%= sub._id %>" <%=product.subCategoryId==sub._id
+                                                    ? "selected" : "" %>>
+                                                    <%= sub.subCategoryName %>
+                                                </option>
+                                                <% }) %>
+
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-3 text-right control-label col-form-label">
+                                        Extra Category
+                                    </label>
+
+                                    <div class="col-sm-9">
+                                        <select class="form-control" name="extracategoryId" id="extracategoryId">
+
+                                            <option value="">---select extraCategory---</option>
+
+                                            <% extracategories.forEach(extra=> { %>
+                                                <option value="<%= extra._id %>" <%=product.extracategoryId==extra._id
+                                                    ? "selected" : "" %>>
+                                                    <%= extra.extraCategoryName %>
+                                                </option>
+                                                <% }) %>
+
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-3 text-right control-label">Current Image</label>
+                                    <div class="col-sm-9">
+                                        <img src="<%= product.prodImg %>" width="120">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-3 text-right control-label">
+                                        Change Image
+                                    </label>
+
+                                    <div class="col-md-9">
+                                        <input type="file" name="prodImg" class="form-control">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="border-top">
+                                <div class="card-body">
+                                    <button type="submit" class="btn btn-primary">
+                                        Update Product
+                                    </button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <%- include('../footer') %>

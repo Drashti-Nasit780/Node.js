@@ -1,0 +1,119 @@
+<%- include('../header')%>
+
+    <div class="page-wrapper" style="background-color: #e1e8f9;">
+        <div class="page-breadcrumb">
+            <div class="row">
+                <div class="col-12 d-flex no-block align-items-center">
+                    <h4 class="page-title">
+                        <%= blog ? 'Edit Blog' : 'Add Blog' %>
+                    </h4>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <form class="form-horizontal"
+                            action="<%= blog ? '/blog/update-blog/' + blog._id : '/blog/add-blog' %>" method="post"
+                            enctype="multipart/form-data">
+
+                            <div class="card-body">
+                                <h4 class="card-title">Blog Info</h4>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-3 text-right col-form-label">Blog Title</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" name="title" class="form-control" placeholder="Title"
+                                            value="<%= blog ? blog.title : '' %>">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-3 text-right col-form-label">Blog Description</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" name="description" class="form-control"
+                                            placeholder="Description" value="<%= blog ? blog.description : '' %>">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-3 text-right col-form-label">Blog Content</label>
+                                    <div class="col-sm-9">
+                                        <textarea name="content" class="form-control" rows="6"
+                                            placeholder="Write full blog content..."><%= blog ? blog.content : '' %></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-3 text-right col-form-label">Blog Author</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" name="author" class="form-control" placeholder="Author"
+                                            value="<%= blog ? blog.author : '' %>">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-3 text-right col-form-label">Publish Date</label>
+                                    <div class="col-sm-9">
+                                        <input type="date" name="publishDate" class="form-control"
+                                            value="<%= blog && blog.publishDate ? blog.publishDate.toISOString().split('T')[0] : '' %>">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-3 text-right col-form-label">Blog Category</label>
+                                    <div class="col-sm-9">
+                                        <select name="category" class="form-control">
+                                            <option value="">---select category---</option>
+                                            <option value="Technology" <%=blog && blog.category==='Technology'
+                                                ? 'selected' : '' %>>Technology</option>
+                                            <option value="Lifestyle" <%=blog && blog.category==='Lifestyle'
+                                                ? 'selected' : '' %>>Lifestyle</option>
+                                            <option value="Education" <%=blog && blog.category==='Education'
+                                                ? 'selected' : '' %>>Education</option>
+                                            <option value="Business & Finance" <%=blog &&
+                                                blog.category==='Business & Finance' ? 'selected' : '' %>>Business &
+                                                Finance</option>
+                                            <option value="Entertainment" <%=blog && blog.category==='Entertainment'
+                                                ? 'selected' : '' %>>Entertainment</option>
+                                            <option value="AI" <%=blog && blog.category==='AI' ? 'selected' : '' %>>AI
+                                            </option>
+                                            <option value="Food" <%=blog && blog.category==='Food' ? 'selected' : '' %>
+                                                >Food
+                                            </option>
+                                            <option value="Fitness" <%=blog && blog.category==='Fitness' ? 'selected'
+                                                : '' %>>Fitness
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-3 text-right col-form-label">Blog Image</label>
+                                    <div class="col-sm-9">
+                                        <input type="file" name="blogImg" class="form-control">
+                                        <% if (blog && blog.blogImg) { %>
+                                            <img src="<%= blog.blogImg %>" width="120" class="img-thumbnail mt-2">
+                                            <% } %>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="border-top">
+                                <div class="card-body">
+                                    <button type="submit" class="btn btn-primary">
+                                        <%= blog ? 'Update Blog' : 'Add Blog' %>
+                                    </button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('../footer')%>

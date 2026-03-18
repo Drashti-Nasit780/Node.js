@@ -1,0 +1,245 @@
+<%- include('../header') %>
+<style>
+    .page-wrapper {
+        background: linear-gradient(135deg, #edf2fb, #d7e3fc);
+        min-height: 100vh;
+        padding-bottom: 30px;
+    }
+
+    .blog-title-box {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(10px);
+        border-left: 6px solid #4e73df;
+        padding: 18px;
+        border-radius: 14px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+
+    .blog-card {
+        border-radius: 22px;
+        overflow: hidden;
+        border: none;
+        background: #fff;
+        transition: all 0.35s ease;
+        position: relative;
+    }
+
+    .blog-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 18px 35px rgba(0,0,0,0.14);
+    }
+
+    .blog-card img {
+        transition: 0.4s ease;
+    }
+
+    .blog-card:hover img {
+        transform: scale(1.08);
+    }
+
+    .small-category-badge {
+        display: inline-block;
+        font-size: 11px;
+        padding: 6px 14px;
+        background: linear-gradient(45deg, #4e73df, #224abe);
+        color: white;
+        border-radius: 30px;
+        font-weight: 600;
+        margin: 14px 0 8px 15px;
+        letter-spacing: .4px;
+    }
+
+    .search-box {
+        border-radius: 18px;
+        margin-bottom: 20px;
+        background: white;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
+
+    .search-box input {
+        border-radius: 14px;
+        height: 48px;
+        border: 1px solid #dbe4ff;
+    }
+
+    .search-box .btn-primary {
+        border-radius: 14px;
+        height: 48px;
+        font-weight: 600;
+    }
+
+    .rounded-pill {
+        border-radius: 25px;
+        margin: 5px;
+        padding: 7px 16px;
+        font-size: 13px;
+    }
+
+    .card-title {
+        font-weight: 700;
+        font-size: 20px;
+        color: #2c3e50;
+        margin-bottom: 10px;
+    }
+
+    .card-text {
+        font-size: 14px;
+        line-height: 1.7;
+        color: #6c757d;
+    }
+
+    .btn-primary {
+        border-radius: 12px;
+        padding: 7px 16px;
+        font-weight: 600;
+        background: linear-gradient(45deg, #4e73df, #224abe);
+        border: none;
+    }
+
+    .btn-primary:hover {
+        opacity: 0.9;
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+
+    .blog-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background: linear-gradient(90deg, #4e73df, #224abe);
+    }
+</style>
+
+
+    <div class="page-wrapper" style="background-color: #c9d7f7;">
+        <div class="page-breadcrumb">
+            <div class="row align-items-center">
+                <div class="col-12 d-flex no-block align-items-center mb-3">
+                    <h4 class="page-title">Blog List</h4>
+                    <div class="ml-auto text-right">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active">Library</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <div class="search-box p-3 bg-white rounded shadow-sm">
+
+                        <form method="GET" action="/Blog/view-blog">
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <input type="text" name="search" class="form-control"
+                                        placeholder="Search by title or category (e.g. AI, Technology, Business)"
+                                        value="<%= search || '' %>">
+                                </div>
+
+                                <div class="col-md-2">
+                                    <button type="submit" class="btn btn-primary w-100">
+                                        🔍 Search
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+
+                        <div class="mt-3 d-flex flex-wrap gap-2">
+                            <a href="/Blog/view-blog" class="btn btn-sm btn-outline-dark rounded-pill">
+                                All
+                            </a>
+
+                            <a href="/Blog/view-blog?search=Technology"
+                                class="btn btn-sm btn-outline-primary rounded-pill">
+                                Technology
+                            </a>
+
+                            <a href="/Blog/view-blog?search=Business"
+                                class="btn btn-sm btn-outline-primary rounded-pill">
+                                Business & Finance
+                            </a>
+
+                            <a href="/Blog/view-blog?search=Education"
+                                class="btn btn-sm btn-outline-primary rounded-pill">
+                                Education
+                            </a>
+
+                            <a href="/Blog/view-blog?search=Lifestyle"
+                                class="btn btn-sm btn-outline-primary rounded-pill">
+                                Lifestyle
+                            </a>
+
+                            <a href="/Blog/view-blog?search=Entertainment"
+                                class="btn btn-sm btn-outline-primary rounded-pill">
+                                Entertainment
+                            </a>
+
+                            <a href="/Blog/view-blog?search=AI" class="btn btn-sm btn-outline-primary rounded-pill">
+                                AI
+                            </a>
+                            <a href="/Blog/view-blog?search=Food" class="btn btn-sm btn-outline-primary rounded-pill">
+                                Food
+                            </a>
+                            <a href="/Blog/view-blog?search=Fitness" class="btn btn-sm btn-outline-primary rounded-pill">
+                                Fitness
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body blog-title-box">
+                    <h5 class="card-title m-b-3">Blogs</h5>
+
+                    <div class="row">
+                        <% blogs.forEach((blog, i)=>{ %>
+                            <div class="col-md-4 mb-4">
+                                <div class="card blog-card shadow-sm h-100">
+
+                                    <img src="<%= blog.blogImg %>" class="card-img-top" height="220"
+                                        style="object-fit: cover;" alt="img">
+
+                                    <span class="small-category-badge">
+                                        <%= blog.category %>
+                                    </span>
+
+                                    <div class="card-body">
+                                        <h5 class="card-title">
+                                            <%= blog.title %>
+                                        </h5>
+
+                                        <p class="card-text text-muted mb-1">
+                                            <%= blog.author %> | <%= blog.publishDate %>
+                                        </p>
+
+                                        <p class="card-text">
+                                            <%= blog.description %>
+                                        </p>
+
+                                        <a href="/Blog/view-single/<%= blog._id %>"
+                                            class="btn btn-outline-primary btn-sm">
+                                            View More →
+                                        </a>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <% }) %>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <%- include('../footer')%>

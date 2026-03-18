@@ -1,0 +1,75 @@
+<%- include('../header') %>
+    <div class="page-wrapper">
+        <div class="page-breadcrumb">
+            <div class="row">
+                <div class="col-12 d-flex no-block align-items-center">
+                    <h4 class="page-title">Extracategory List</h4>
+                    <div class="ml-auto text-right">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Library</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title m-b-0">Extra Categories</h5>
+                        </div>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">CategoryName</th>
+                                    <th scope="col">CategoryImage</th>
+                                    <th scope="col">Subcategory Name</th>
+                                    <th scope="col">Extra Category Name</th>
+                                    <th scope="col" colspan="2">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% extracategories.forEach((cat, i)=>{ %>
+                                    <tr>
+                                        <th scope="row">
+                                            <%= i+1 %>
+                                        </th>
+                                        <td>
+                                            <%= cat.subCategoryId?.categoryId?.categoryName || "No Category" %>
+                                        </td>
+
+                                        <td>
+                                            <% if(cat.subCategoryId?.categoryId?.categoryImg){ %>
+                                                <img src="<%= cat.subCategoryId.categoryId.categoryImg %>" width="78">
+                                                <% } else { %>
+                                                    No Image
+                                                    <% } %>
+                                        </td>
+
+                                        <td>
+                                            <%= cat.subCategoryId?.subCategoryName %>
+                                        </td>
+
+                                        <td>
+                                            <%= cat.extraCategoryName %>
+                                        </td>
+                                        <td>
+                                            <a href="/extracategory/edit-extracategory/<%= cat._id %>"
+                                                class="btn btn-warning">EDIT</a>
+                                            <a href="/extracategory/delete-extracategory/<%= cat._id %>"
+                                                class="btn btn-danger">DELETE</a>
+                                        </td>
+                                    </tr>
+                                    <% })%>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%- include('../footer')%>

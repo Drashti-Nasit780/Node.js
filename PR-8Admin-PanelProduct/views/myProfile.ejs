@@ -1,0 +1,17 @@
+<%- include('header') %>
+    <div class="page-wrapper">
+        <div class="card" style="width: 18rem;">
+            <img src="<%= user.profileimg %>" class="card-img-top"
+                alt="<%= user.firstname[0] %><%= user.lastname[0] %>">
+            <div class="card-body">
+                <h2>
+                    <%= user.firstname %>
+                        <%= user.lastname %>
+                </h2>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card’s
+                    content.</p>
+            </div>
+        </div>
+    </div>
+    <%- include('footer') %>

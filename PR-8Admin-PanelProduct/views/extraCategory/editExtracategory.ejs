@@ -1,0 +1,72 @@
+<%- include('../header') %>
+
+    <div class="page-wrapper">
+        <div class="container-fluid">
+
+            <div class="card">
+
+                <form class="form-horizontal" action="/extracategory/update-extracategory/<%= extracategory._id %>"
+                    method="post">
+                    <div class="card-body">
+                        <h4 class="card-title">Update ExtraCategory</h4>
+                        <div class="form-group row">
+                            <label class="col-sm-3 text-right control-label col-form-label">
+                                Category Name
+                            </label>
+                            <div class="col-sm-9">
+                                <select class="form-control" disabled>
+                                    <option>--- Category ---</option>
+                                    <% categories.forEach(cat=> { %>
+                                        <option
+                                            <%=cat._id.toString()===extracategory.subCategoryId.categoryId.toString()
+                                            ? "selected" : "" %>>
+                                            <%= cat.categoryName %>
+                                        </option>
+                                        <% }) %>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 text-right control-label col-form-label">
+                                Subcategory Name
+                            </label>
+
+                            <div class="col-sm-9">
+                                <select class="form-control" name="subCategoryId">
+                                    <option value="">---select subcategory---</option>
+                                    <% subcategories.forEach(sub=> { %>
+                                        <option value="<%= sub._id %>"
+                                            <%=sub._id.toString()===extracategory.subCategoryId.toString() ? "selected"
+                                            : "" %>>
+                                            <%= sub.subCategoryName %>
+                                        </option>
+                                        <% }) %>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 text-right control-label col-form-label">
+                                ExtraCategory Name
+                            </label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="extraCategoryName"
+                                    value="<%= extracategory.extraCategoryName %>">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border-top">
+                        <div class="card-body">
+                            <button type="submit" class="btn btn-primary">
+                                Update
+                            </button>
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+
+    <%- include('../footer') %>
