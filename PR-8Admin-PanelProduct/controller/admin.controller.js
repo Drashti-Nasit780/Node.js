@@ -39,7 +39,7 @@ exports.viewAllAdmin = async (req, res) => {
         return res.redirect("/");
     }
 }
-
+let 
 exports.deleteAdmin = async (req, res) => {
     let id = req.params.id;
     let admin = await Admin.findById(id);
